@@ -48,6 +48,8 @@ classes = {
      20: "tricep_dips",
      21: "tricep_pushdown",
 }
+
+
 model = load_model('workout_model_.h5')
 framess = []
 def predict():
@@ -102,7 +104,6 @@ def choose_exercises_with_camera():
 
                             liste.append(predicted_class)
 
-
                         for eleman in set(liste):
                             print(f"{eleman}: {liste.count(eleman)}")
 
@@ -140,64 +141,6 @@ def choose_exercises_with_camera():
     cv2.destroyAllWindows()
     framess = []
 
-    
-    '''model = load_model('workout_model_.h5')
-
-    cap = cv2.VideoCapture(0)
-
-    while cap.isOpened():
-        ret, frame = cap.read()
-
-        if ret:
-            #cv2.imwrite('ornek_goruntu.png', frame)
-
-            gray = cv2.cvtColor(frame,cv2.COLOR_BGR2GRAY)
-            _,thresh = cv2.threshold(gray,1,255,cv2.THRESH_BINARY)
-            contours,hierarchy = cv2.findContours(thresh,cv2.RETR_EXTERNAL,cv2.CHAIN_APPROX_SIMPLE)
-            cnt = contours[0]
-            x,y,w,h = cv2.boundingRect(cnt)
-            crop = frame[y:y+h,x:x+w]
-            
-            hedef_genislik = 256
-            hedef_yukseklik = 256
-
-            sample_image = cv2.resize(crop, (hedef_genislik, hedef_yukseklik), interpolation=cv2.INTER_AREA)
-            cv2.imwrite('test.png',sample_image)
-            sample_image = np.expand_dims(sample_image, axis=0)
-            cap.release()
-            
-
-        #if ret:
-        #    cv2.imwrite('sofwinresframe.png',frame)
-        #    sample_image = cv2.resize(frame, (256, 256))
-        #    cv2.imwrite('sofwinressample.png',sample_image)
-        #    cv2.imwrite('ornek_goruntu.png', sample_image)
-        #    sample_image = np.expand_dims(sample_image, axis=0) 
-        #    cap.release()
-        else:
-            print("Kare alınamadı.")
-
-    cap.release()
-    cv2.destroyAllWindows()
-
-
-    predictions = model.predict(sample_image)
-    print("predictions:")
-    print(predictions)
-    print(type(predictions))
-    predicted_class = np.argmax(predictions)
-    print("predict:")
-    print(predicted_class)
-
-
-
-    print("Tahmin edilen sınıf:", classes[predicted_class])
-
-    fonksiyon = classes[predicted_class]
-    fonksiyon = getattr(exercises_function,fonksiyon)
-    #exercises_function.push_up()
-    fonksiyon()'''
-
 root = tk.Tk()
 root.title("Egzersiz Tahmini")
 root.geometry("300x150")
@@ -218,14 +161,3 @@ predict_button = tk.Button(root, text="Predict", command=predict)
 predict_button.pack(pady=10)
 
 root.mainloop()
-
-
-
-
-'''
-kamera açılınca 5 saniye boyunca o hareketi yapacak.
-5 saniye boyunca sürekli predict yapılcak.
-5 saniye boyunca frameler alınacak.
-sonra o framelerin hepsi tek tek predict edilecek.
-en çok hangi class predict edildiyse o hareket seçilecek
-'''
