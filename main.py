@@ -22,8 +22,9 @@ import math
 import numpy as np
 import mediapipe as mp
 import asyncio
+from PIL import Image,ImageTk
 
-
+gif_path = ""
 classes = {
      0:  "barbell_biceps_curl",
      1:  "bench_press",
@@ -52,9 +53,13 @@ classes = {
 
 model = load_model('workout_model_.h5')
 framess = []
+gif_frames = []
+
 def predict():
+    global gif_label
     selected_index = combo_box.current()
     fonksiyon = classes[selected_index]
+    gif_label = None
     #exercises_function.push_up()
     fonksiyon = getattr(exercises_function,fonksiyon)
     fonksiyon()
@@ -141,10 +146,22 @@ def choose_exercises_with_camera():
     cv2.destroyAllWindows()
     framess = []
 
+
+def choosen_gif(event):
+    global gif_path
+    global gif_frames
+    gif_path = "gifs/" + combo_box.get() + ".gif"
+    print(gif_path)
+    gif_frames = []
+    play_gif()
+
+
+
 root = tk.Tk()
 root.title("Egzersiz Tahmini")
-root.geometry("300x150")
+root.geometry("600x450")
 root.lift()
+
 
 
 camera_button = tk.Button(root, text="Choose Exercises with Camera", command=choose_exercises_with_camera)
@@ -152,6 +169,46 @@ camera_button.pack(pady=10)
 
 combo_box = ttk.Combobox(root, state = "readonly", values=[i for i in classes.values()])
 combo_box.pack(pady=10)
+combo_box.bind("<<ComboboxSelected>>", choosen_gif)
+
+gif_label = tk.Label(root)
+gif_label.pack()
+
+def play_gif():
+    global gif_path
+    global gif_label
+    global gif_frames
+    print(type(gif_path))
+
+    if gif_path != "":
+        gif = Image.open(gif_path)
+        gif_frames = []
+
+        # Gif'in her bir karesini ayır
+        try:
+            while True:
+                frame = ImageTk.PhotoImage(gif.copy())
+                gif_frames.append(frame)
+                gif.seek(len(gif_frames))  # Sonraki kareye geç
+        except EOFError:
+            pass
+
+        # Gif'i göstermek için bir etiket oluştur
+        
+
+        # Gif'i oynat
+        def update_frame(frame_num):
+            #print(len(gif_frames))
+            frame = gif_frames[frame_num]
+            gif_label.configure(image=frame)
+            gif_label.image = frame  # Referansı sakla
+            if frame_num == len(gif_frames) -1:
+                frame_num = 0 
+            else: 
+                frame_num = frame_num + 1
+            root.after(35, update_frame, frame_num)
+
+        update_frame(0)
 
 
 for a in classes.values():
