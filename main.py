@@ -26,28 +26,28 @@ from PIL import Image,ImageTk
 
 gif_path = ""
 classes = {
-     0:  "barbell_biceps_curl",
-     1:  "bench_press",
-     2:  "chest_fly_machine",
-     3:  "deadlift",
-     4:  "decline_bench_press",
-     5:  "hammer_curl",
-     6:  "hip_thrust",
-     7:  "incline_bench_press",
-     8:  "lat_pulldown",
-     9:  "lateral_raises",
-     10: "leg_extension",
-     11: "leg_raises",
-     12: "plank",
-     13: "pull_up",
-     14: "push_up",
-     15: "romanian_deadlift",
-     16: "russian_twist",
-     17: "shoulder_press",
-     18: "squat",
-     19: "t_bar_row",
-     20: "tricep_dips",
-     21: "tricep_pushdown",
+    0:  "barbell_biceps_curl",
+    1:  "bench_press",
+    2:  "chest_fly_machine",
+    3:  "deadlift",
+    4:  "decline_bench_press",
+    5:  "hammer_curl",
+    6:  "hip_thrust",
+    7:  "incline_bench_press",
+    8:  "lat_pulldown",
+    9:  "lateral_raises",
+    10: "leg_extension",
+    11: "leg_raises",
+    12: "plank",
+    13: "pull_up",
+    14: "push_up",
+    15: "romanian_deadlift",
+    16: "russian_twist",
+    17: "shoulder_press",
+    18: "squat",
+    19: "t_bar_row",
+    20: "tricep_dips",
+    21: "tricep_pushdown",
 }
 
 
@@ -57,9 +57,11 @@ gif_frames = []
 
 def predict():
     global gif_label
+    global gif_path
+    gif_path = ""
     selected_index = combo_box.current()
     fonksiyon = classes[selected_index]
-    gif_label = None
+    #gif_label = None
     #exercises_function.push_up()
     fonksiyon = getattr(exercises_function,fonksiyon)
     fonksiyon()
@@ -155,14 +157,10 @@ def choosen_gif(event):
     gif_frames = []
     play_gif()
 
-
-
 root = tk.Tk()
 root.title("Egzersiz Tahmini")
 root.geometry("600x450")
 root.lift()
-
-
 
 camera_button = tk.Button(root, text="Choose Exercises with Camera", command=choose_exercises_with_camera)
 camera_button.pack(pady=10)
@@ -170,6 +168,9 @@ camera_button.pack(pady=10)
 combo_box = ttk.Combobox(root, state = "readonly", values=[i for i in classes.values()])
 combo_box.pack(pady=10)
 combo_box.bind("<<ComboboxSelected>>", choosen_gif)
+
+predict_button = tk.Button(root, text="Select Exercise", command=predict)
+predict_button.pack(pady=10)
 
 gif_label = tk.Label(root)
 gif_label.pack()
@@ -184,24 +185,20 @@ def play_gif():
         gif = Image.open(gif_path)
         gif_frames = []
 
-        # Gif'in her bir karesini ayır
         try:
             while True:
+                #print(len(gif_frames))
                 frame = ImageTk.PhotoImage(gif.copy())
                 gif_frames.append(frame)
-                gif.seek(len(gif_frames))  # Sonraki kareye geç
+                gif.seek(len(gif_frames))
         except EOFError:
             pass
 
-        # Gif'i göstermek için bir etiket oluştur
-        
-
-        # Gif'i oynat
         def update_frame(frame_num):
             #print(len(gif_frames))
             frame = gif_frames[frame_num]
             gif_label.configure(image=frame)
-            gif_label.image = frame  # Referansı sakla
+            gif_label.image = frame
             if frame_num == len(gif_frames) -1:
                 frame_num = 0 
             else: 
@@ -214,7 +211,6 @@ def play_gif():
 for a in classes.values():
     print(str(a))
 
-predict_button = tk.Button(root, text="Predict", command=predict)
-predict_button.pack(pady=10)
+
 
 root.mainloop()
