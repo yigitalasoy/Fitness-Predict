@@ -867,7 +867,6 @@ def deadlift():
         cv2.destroyAllWindows()
 
 def decline_bench_press():
-    #yapılacak
     print("decline_bench_press fonksiyonu çağrıldı")
 
     randomGoal = generateRandomExerciseCount()
@@ -904,10 +903,6 @@ def decline_bench_press():
                 landmarks = results.pose_landmarks.landmark
 
 
-                if (landmarks[mp_pose.PoseLandmark.RIGHT_ANKLE.value].visibility < 0.5) and (landmarks[mp_pose.PoseLandmark.LEFT_ANKLE.value].visibility < 0.5):
-                    cv2.putText(image, 'AYAKLAR ALGILANMADI', (190,27), 
-                        cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255,255,255), 1, cv2.LINE_AA)
-                    state = False
 
                 if (landmarks[mp_pose.PoseLandmark.RIGHT_ELBOW.value].visibility < 0.5) and (landmarks[mp_pose.PoseLandmark.LEFT_ELBOW.value].visibility < 0.5):
                     cv2.putText(image, 'DIRSEKLER ALGILANMADI', (190,42), 
@@ -952,9 +947,9 @@ def decline_bench_press():
                     #                cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 47, 47), 2, cv2.LINE_AA
                     #                    )
                     
-                    if angle > 150:
+                    if angle > 125:
                         stage = "up"
-                    if angle < 100 and stage == "up":
+                    if angle < 120 and stage == "up":
                         counter +=1
                         if counter==1:
                             startTime = datetime.now()
