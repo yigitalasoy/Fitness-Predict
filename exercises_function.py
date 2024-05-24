@@ -2183,7 +2183,132 @@ def leg_raises():
         cv2.destroyAllWindows()
 
 def plank():
+    
     print("plank fonksiyonu çağrıldı")
+
+    randomGoal = generateRandomExerciseCount()
+    print(f"random goal: {randomGoal}")
+
+    startTime = datetime.now()
+    finishTime = datetime.now()
+
+    isStart = False
+
+    lastSecond = 0
+
+    print(f"random goal: {randomGoal}")
+
+    cap = cv2.VideoCapture(0)
+    counter = 0
+    stage = None
+    diff = datetime.now() - startTime
+
+    with mp_pose.Pose(min_detection_confidence=0.5, min_tracking_confidence=0.5) as pose:
+        while cap.isOpened():
+            ret, frame = cap.read()
+            
+            image = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+            image.flags.writeable = False
+        
+            results = pose.process(image)
+        
+            image.flags.writeable = True
+            image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
+            
+            try:
+                
+                state = True
+                landmarks = results.pose_landmarks.landmark
+
+                if (landmarks[mp_pose.PoseLandmark.RIGHT_ELBOW.value].visibility < 0.5) and (landmarks[mp_pose.PoseLandmark.LEFT_ELBOW.value].visibility < 0.5):
+                    cv2.putText(image, 'DIRSEKLER ALGILANMADI', (190,42), 
+                        cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255,255,255), 1, cv2.LINE_AA)
+                    state = False
+                    stage = "down"
+                
+
+                if state:
+                    shoulder = [landmarks[mp_pose.PoseLandmark.RIGHT_SHOULDER.value].x,landmarks[mp_pose.PoseLandmark.RIGHT_SHOULDER.value].y]
+                    elbow = [landmarks[mp_pose.PoseLandmark.RIGHT_ELBOW.value].x,landmarks[mp_pose.PoseLandmark.RIGHT_ELBOW.value].y]
+                    wrist = [landmarks[mp_pose.PoseLandmark.RIGHT_WRIST.value].x,landmarks[mp_pose.PoseLandmark.RIGHT_WRIST.value].y]
+
+                    angle = calculate_angle(shoulder, elbow, wrist)
+
+
+                    cv2.putText(image, str(angle).split('.')[0], 
+                                    tuple(np.multiply(elbow, [640, 480]).astype(int)), 
+                                    cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 255), 2, cv2.LINE_AA
+                                        )
+                    
+                    
+                    if angle > 70 and angle < 120:
+                        stage = "up"
+                        if isStart == False:
+                            isStart = True
+                            startTime = datetime.now()
+                            print("start başladı. isstart true")
+
+                        diff = datetime.now() - startTime
+                        divmod(diff.seconds, 60)
+
+                    elif stage == "up":
+                        if isStart == True:
+                            isStart = False
+                            finishTime = datetime.now()
+                            lastSecond = diff.seconds
+                            diff = datetime.now() - startTime
+                        stage = "down"
+
+                        
+                    
+
+            except:
+                pass
+            print(diff.seconds)
+
+            cv2.rectangle(image, (0,0), (180,80), (245,117,16), -1)
+            
+            cv2.putText(image, 'Plank', (10,12), 
+                        cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0,0,0), 1, cv2.LINE_AA)
+            cv2.putText(image, f"{diff.seconds} sec.", 
+                        (10,30), 
+                        cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255,255,255), 1, cv2.LINE_AA)
+        
+            cv2.putText(image, stage, 
+                        (105,30), 
+                        cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255,255,255), 1, cv2.LINE_AA)
+            
+            if int(randomGoal) <= int(diff.seconds):
+                
+                cv2.putText(image, "Goal Completed. You can continue if you want",
+                        (185,42), 
+                        cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255,255,255), 1, cv2.LINE_AA)
+
+                
+            cv2.putText(image, str(datetime.now()),
+                        (185,12), 
+                        cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255,255,255), 1, cv2.LINE_AA)
+
+            cv2.putText(image, "Goal: "+str(randomGoal), 
+                        (10,52), 
+                        cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255,255,255), 1, cv2.LINE_AA)
+            
+            mp_drawing.draw_landmarks(image, results.pose_landmarks, mp_pose.POSE_CONNECTIONS,
+                                    mp_drawing.DrawingSpec(color=(245,117,66), thickness=2, circle_radius=2), 
+                                    mp_drawing.DrawingSpec(color=(245,66,230), thickness=2, circle_radius=2) 
+                                    )               
+            image = cv2.resize(image, (1000, 800))
+            cv2.imshow('Mediapipe Feed', image)
+
+            if cv2.waitKey(10) & 0xFF == ord('q'):
+                break
+
+        cap.release()
+        cv2.destroyAllWindows()
+    
+
+
+
 
 def romanian_deadlift():
     print("romanian_deadlift fonksiyonu çağrıldı")
