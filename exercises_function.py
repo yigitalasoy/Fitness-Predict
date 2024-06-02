@@ -32,6 +32,7 @@ def pull_up():
     print(f"random goal: {randomGoal}")
     print(f"goal time: {goalTime}")
 
+    point = 0
 
     cap = cv2.VideoCapture(0)
     counter = 0
@@ -103,7 +104,11 @@ def pull_up():
                         (185,42), 
                         cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255,255,255), 1, cv2.LINE_AA)
                 
-                
+            if finishState == False:
+                cv2.putText(image, f"Last Score: {point}/10",
+                        (490,12), 
+                        cv2.FONT_HERSHEY_SIMPLEX, 0.5, (245,117,16), 1, cv2.LINE_AA)
+            
             
             if (int(randomGoal) == int(counter)) and finishState:
                 finishState = False
@@ -179,6 +184,8 @@ def push_up():
 
     print(f"random goal: {randomGoal}")
     print(f"goal time: {goalTime}")
+
+    point = 0
 
     cap = cv2.VideoCapture(0)
     counter = 0
@@ -277,7 +284,10 @@ def push_up():
                         (185,42), 
                         cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255,255,255), 1, cv2.LINE_AA)
                 
-                
+            if finishState == False:
+                cv2.putText(image, f"Last Score: {point}/10",
+                        (490,12), 
+                        cv2.FONT_HERSHEY_SIMPLEX, 0.5, (245,117,16), 1, cv2.LINE_AA)
             
             if (int(randomGoal) == int(counter)) and finishState:
                 finishState = False
@@ -356,6 +366,7 @@ def barbell_biceps_curl():
     print(f"random goal: {randomGoal}")
     print(f"goal time: {goalTime}")
 
+    point = 0
 
     cap = cv2.VideoCapture(0)
     counter = 0
@@ -451,7 +462,12 @@ def barbell_biceps_curl():
                         (185,42), 
                         cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255,255,255), 1, cv2.LINE_AA)
                 
-                
+            
+            if finishState == False:
+                cv2.putText(image, f"Last Score: {point}/10",
+                        (490,12), 
+                        cv2.FONT_HERSHEY_SIMPLEX, 0.5, (245,117,16), 1, cv2.LINE_AA)
+
             
             if (int(randomGoal) == int(counter)) and finishState:
                 finishState = False
@@ -530,6 +546,8 @@ def bench_press():
 
     print(f"random goal: {randomGoal}")
     print(f"goal time: {goalTime}")
+
+    point = 0
 
 
     cap = cv2.VideoCapture(0)
@@ -636,6 +654,11 @@ def bench_press():
                         cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255,255,255), 1, cv2.LINE_AA)
                 
                 
+            if finishState == False:
+                cv2.putText(image, f"Last Score: {point}/10",
+                        (490,12), 
+                        cv2.FONT_HERSHEY_SIMPLEX, 0.5, (245,117,16), 1, cv2.LINE_AA)
+
             
             if (int(randomGoal) == int(counter)) and finishState:
                 finishState = False
@@ -697,8 +720,6 @@ def bench_press():
         cap.release()
         cv2.destroyAllWindows()
 
-def chest_fly_machine():
-    print("chest_fly_machine fonksiyonu çağrıldı")
 
 def deadlift():
     print("deadlift fonksiyonu çağrıldı")
@@ -715,6 +736,8 @@ def deadlift():
 
     print(f"random goal: {randomGoal}")
     print(f"goal time: {goalTime}")
+
+    point = 0
 
 
     cap = cv2.VideoCapture(0)
@@ -804,7 +827,11 @@ def deadlift():
                         (185,42), 
                         cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255,255,255), 1, cv2.LINE_AA)
                 
-                
+            if finishState == False:
+                cv2.putText(image, f"Last Score: {point}/10",
+                        (490,12), 
+                        cv2.FONT_HERSHEY_SIMPLEX, 0.5, (245,117,16), 1, cv2.LINE_AA)
+
             
             if (int(randomGoal) == int(counter)) and finishState:
                 finishState = False
@@ -881,6 +908,8 @@ def decline_bench_press():
 
     print(f"random goal: {randomGoal}")
     print(f"goal time: {goalTime}")
+
+    point = 0
 
     cap = cv2.VideoCapture(0)
     counter = 0
@@ -978,7 +1007,12 @@ def decline_bench_press():
                         (185,42), 
                         cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255,255,255), 1, cv2.LINE_AA)
                 
-                
+
+            if finishState == False:
+                cv2.putText(image, f"Last Score: {point}/10",
+                        (490,12), 
+                        cv2.FONT_HERSHEY_SIMPLEX, 0.5, (245,117,16), 1, cv2.LINE_AA)    
+            
             
             if (int(randomGoal) == int(counter)) and finishState:
                 finishState = False
@@ -1056,6 +1090,7 @@ def hammer_curl():
     print(f"random goal: {randomGoal}")
     print(f"goal time: {goalTime}")
 
+    point = 0
 
     cap = cv2.VideoCapture(0)
     counter = 0
@@ -1084,9 +1119,9 @@ def hammer_curl():
                     
 
                 if state:
-                    shoulder = [landmarks[mp_pose.PoseLandmark.RIGHT_SHOULDER.value].x,landmarks[mp_pose.PoseLandmark.RIGHT_SHOULDER.value].y]
-                    elbow = [landmarks[mp_pose.PoseLandmark.RIGHT_ELBOW.value].x,landmarks[mp_pose.PoseLandmark.RIGHT_ELBOW.value].y]
-                    wrist = [landmarks[mp_pose.PoseLandmark.RIGHT_WRIST.value].x,landmarks[mp_pose.PoseLandmark.RIGHT_WRIST.value].y]
+                    shoulder = [landmarks[mp_pose.PoseLandmark.LEFT_SHOULDER.value].x,landmarks[mp_pose.PoseLandmark.LEFT_SHOULDER.value].y]
+                    elbow = [landmarks[mp_pose.PoseLandmark.LEFT_ELBOW.value].x,landmarks[mp_pose.PoseLandmark.LEFT_ELBOW.value].y]
+                    wrist = [landmarks[mp_pose.PoseLandmark.LEFT_WRIST.value].x,landmarks[mp_pose.PoseLandmark.LEFT_WRIST.value].y]
 
                     angle = calculate_angle(shoulder, elbow, wrist)
 
@@ -1129,6 +1164,10 @@ def hammer_curl():
                         (185,42), 
                         cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255,255,255), 1, cv2.LINE_AA)
                 
+            if finishState == False:
+                cv2.putText(image, f"Last Score: {point}/10",
+                        (490,12), 
+                        cv2.FONT_HERSHEY_SIMPLEX, 0.5, (245,117,16), 1, cv2.LINE_AA)
                 
             
             if (int(randomGoal) == int(counter)) and finishState:
@@ -1206,6 +1245,8 @@ def hip_thrust():
 
     print(f"random goal: {randomGoal}")
     print(f"goal time: {goalTime}")
+
+    point = 0
 
 
     cap = cv2.VideoCapture(0)
@@ -1286,6 +1327,11 @@ def hip_thrust():
                         cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255,255,255), 1, cv2.LINE_AA)
                 
                 
+            if finishState == False:
+                cv2.putText(image, f"Last Score: {point}/10",
+                        (490,12), 
+                        cv2.FONT_HERSHEY_SIMPLEX, 0.5, (245,117,16), 1, cv2.LINE_AA)
+
             
             if (int(randomGoal) == int(counter)) and finishState:
                 finishState = False
@@ -1362,6 +1408,8 @@ def incline_bench_press():
 
     print(f"random goal: {randomGoal}")
     print(f"goal time: {goalTime}")
+
+    point = 0
 
 
     cap = cv2.VideoCapture(0)
@@ -1458,6 +1506,10 @@ def incline_bench_press():
                         (185,42), 
                         cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255,255,255), 1, cv2.LINE_AA)
                 
+            if finishState == False:
+                cv2.putText(image, f"Last Score: {point}/10",
+                        (490,12), 
+                        cv2.FONT_HERSHEY_SIMPLEX, 0.5, (245,117,16), 1, cv2.LINE_AA)
                 
             
             if (int(randomGoal) == int(counter)) and finishState:
@@ -1535,6 +1587,8 @@ def lat_pulldown():
 
     print(f"random goal: {randomGoal}")
     print(f"goal time: {goalTime}")
+
+    point = 0
 
 
     cap = cv2.VideoCapture(0)
@@ -1648,6 +1702,11 @@ def lat_pulldown():
                         (185,42), 
                         cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255,255,255), 1, cv2.LINE_AA)
                 
+
+            if finishState == False:
+                cv2.putText(image, f"Last Score: {point}/10",
+                        (490,12), 
+                        cv2.FONT_HERSHEY_SIMPLEX, 0.5, (245,117,16), 1, cv2.LINE_AA)
                 
             
             if (int(randomGoal) == int(counter)) and finishState:
@@ -1726,6 +1785,8 @@ def lateral_raises():
     print(f"random goal: {randomGoal}")
     print(f"goal time: {goalTime}")
 
+    point = 0
+
     cap = cv2.VideoCapture(0)
     counter = 0
     stage = None
@@ -1798,6 +1859,11 @@ def lateral_raises():
                         (185,42), 
                         cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255,255,255), 1, cv2.LINE_AA)
                 
+
+            if finishState == False:
+                cv2.putText(image, f"Last Score: {point}/10",
+                        (490,12), 
+                        cv2.FONT_HERSHEY_SIMPLEX, 0.5, (245,117,16), 1, cv2.LINE_AA)
                 
             
             if (int(randomGoal) == int(counter)) and finishState:
@@ -1875,6 +1941,8 @@ def leg_extension():
 
     print(f"random goal: {randomGoal}")
     print(f"goal time: {goalTime}")
+
+    point = 0
 
     cap = cv2.VideoCapture(0)
     counter = 0
@@ -1964,6 +2032,11 @@ def leg_extension():
                         (185,42), 
                         cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255,255,255), 1, cv2.LINE_AA)
                 
+
+            if finishState == False:
+                cv2.putText(image, f"Last Score: {point}/10",
+                        (490,12), 
+                        cv2.FONT_HERSHEY_SIMPLEX, 0.5, (245,117,16), 1, cv2.LINE_AA)
                 
             
             if (int(randomGoal) == int(counter)) and finishState:
@@ -2044,6 +2117,8 @@ def leg_raises():
     print(f"random goal: {randomGoal}")
     print(f"goal time: {goalTime}")
 
+    point = 0
+
 
     cap = cv2.VideoCapture(0)
     counter = 0
@@ -2120,6 +2195,11 @@ def leg_raises():
                         (185,42), 
                         cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255,255,255), 1, cv2.LINE_AA)
                 
+
+            if finishState == False:
+                cv2.putText(image, f"Last Score: {point}/10",
+                        (490,12), 
+                        cv2.FONT_HERSHEY_SIMPLEX, 0.5, (245,117,16), 1, cv2.LINE_AA)
                 
             
             if (int(randomGoal) == int(counter)) and finishState:
@@ -2289,7 +2369,7 @@ def plank():
                         (185,12), 
                         cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255,255,255), 1, cv2.LINE_AA)
 
-            cv2.putText(image, "Goal: "+str(randomGoal), 
+            cv2.putText(image, "Goal: "+str(randomGoal)+" sec", 
                         (10,52), 
                         cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255,255,255), 1, cv2.LINE_AA)
             
@@ -2307,17 +2387,337 @@ def plank():
         cv2.destroyAllWindows()
     
 
-
-
-
 def romanian_deadlift():
     print("romanian_deadlift fonksiyonu çağrıldı")
 
-def russian_twist():
-    print("russian_twist fonksiyonu çağrıldı")
+    randomGoal = generateRandomExerciseCount()
+    print(f"random goal: {randomGoal}")
+
+    defaultExerciseTime = 3.9
+
+    startTime = datetime.now()
+    finishTime = datetime.now()
+    goalTime = float(randomGoal) * defaultExerciseTime
+    finishState = True
+
+    print(f"random goal: {randomGoal}")
+    print(f"goal time: {goalTime}")
+
+    point = 0
+
+
+    cap = cv2.VideoCapture(0)
+    counter = 0
+    stage = None
+
+    with mp_pose.Pose(min_detection_confidence=0.5, min_tracking_confidence=0.5) as pose:
+        while cap.isOpened():
+            ret, frame = cap.read()
+            
+            image = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+            image.flags.writeable = False
+        
+            results = pose.process(image)
+        
+            image.flags.writeable = True
+            image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
+            
+            try:
+                state = True
+                landmarks = results.pose_landmarks.landmark
+
+
+                if (landmarks[mp_pose.PoseLandmark.RIGHT_ANKLE.value].visibility < 0.5) and (landmarks[mp_pose.PoseLandmark.LEFT_ANKLE.value].visibility < 0.5):
+                    cv2.putText(image, 'AYAKLAR ALGILANMADI', (190,27), 
+                        cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255,255,255), 1, cv2.LINE_AA)
+                    state = False
+
+                if (landmarks[mp_pose.PoseLandmark.RIGHT_ELBOW.value].visibility < 0.5) and (landmarks[mp_pose.PoseLandmark.LEFT_ELBOW.value].visibility < 0.5):
+                    cv2.putText(image, 'DIRSEKLER ALGILANMADI', (190,42), 
+                        cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255,255,255), 1, cv2.LINE_AA)
+                    state = False
+                    
+                if (landmarks[mp_pose.PoseLandmark.RIGHT_KNEE.value].visibility < 0.5) and (landmarks[mp_pose.PoseLandmark.LEFT_KNEE.value].visibility < 0.5):
+                    cv2.putText(image, 'BACAK ALGILANMADI', (190,12), 
+                        cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255,255,255), 1, cv2.LINE_AA)
+                    state = False
+
+                if state:
+                    shoulder = [landmarks[mp_pose.PoseLandmark.RIGHT_SHOULDER.value].x,landmarks[mp_pose.PoseLandmark.RIGHT_SHOULDER.value].y]
+                    hip = [landmarks[mp_pose.PoseLandmark.RIGHT_HIP.value].x,landmarks[mp_pose.PoseLandmark.RIGHT_HIP.value].y]
+                    knee = [landmarks[mp_pose.PoseLandmark.RIGHT_KNEE.value].x,landmarks[mp_pose.PoseLandmark.RIGHT_KNEE.value].y]
+
+                    bhip = [landmarks[mp_pose.PoseLandmark.LEFT_HIP.value].x,landmarks[mp_pose.PoseLandmark.LEFT_HIP.value].y]
+                    bknee = [landmarks[mp_pose.PoseLandmark.LEFT_KNEE.value].x,landmarks[mp_pose.PoseLandmark.LEFT_KNEE.value].y]
+                    bankle = [landmarks[mp_pose.PoseLandmark.LEFT_ANKLE.value].x,landmarks[mp_pose.PoseLandmark.LEFT_ANKLE.value].y]
+                    
+                    angle = calculate_angle(shoulder, hip, knee)
+
+                    bacak_angle = calculate_angle(bhip, bknee, bankle)
+
+                    cv2.putText(image, str(angle).split('.')[0], 
+                                    tuple(np.multiply(hip, [640, 480]).astype(int)), 
+                                    cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 255), 2, cv2.LINE_AA
+                                        )
+                    
+                    
+                    if angle > 150:
+                        stage = "up"
+                    if angle < 110 and stage == "up":
+                        counter +=1
+                        if counter==1:
+                            startTime = datetime.now()
+                            print(f"{startTime}")
+                        print(counter)
+                        stage = "down"
+                    
+
+            except:
+                pass
+
+            cv2.rectangle(image, (0,0), (180,80), (245,117,16), -1)
+            
+            cv2.putText(image, 'Romanian Dead Lift', (10,12), 
+                        cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0,0,0), 1, cv2.LINE_AA)
+            cv2.putText(image, str(counter), 
+                        (10,30), 
+                        cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255,255,255), 1, cv2.LINE_AA)
+        
+            cv2.putText(image, stage, 
+                        (40,30), 
+                        cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255,255,255), 1, cv2.LINE_AA)
+            
+            if int(randomGoal) <= int(counter):
+                
+                cv2.putText(image, "Goal Completed. You can continue if you want",
+                        (185,42), 
+                        cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255,255,255), 1, cv2.LINE_AA)
+                
+
+            if finishState == False:
+                cv2.putText(image, f"Last Score: {point}/10",
+                        (490,12), 
+                        cv2.FONT_HERSHEY_SIMPLEX, 0.5, (245,117,16), 1, cv2.LINE_AA)
+                
+            
+            if (int(randomGoal) == int(counter)) and finishState:
+                finishState = False
+                finishTime = datetime.now()
+                exerciseTime = finishTime - startTime
+                print(f"yapılan süre: {exerciseTime.total_seconds()}")
+
+                percent = round(((exerciseTime.total_seconds())*100) / (defaultExerciseTime * randomGoal))
+                
+                print(f"percent: {percent}")
+                if percent > 100:
+                    print("100 den büyük. yavaş yapıldı")
+
+                    percent = percent - 100
+                    pointLowerCount = percent // 10
+                    print(f"pointLowerCount: {pointLowerCount}")
+                    if pointLowerCount > 9:
+                        point = 1
+                    else:
+                        point = 10 - pointLowerCount
+
+                    print(f"Point: {point}")
+
+                else:
+                    print("100 den küçük. hızlı yapıldı")
+
+                    percent = 100 - percent
+                    pointLowerCount = percent // 10
+                    print(f"pointLowerCount: {pointLowerCount}")
+                    if pointLowerCount > 9:
+                        point = 1
+                    else:
+                        point = 10 - pointLowerCount
+
+                    print(f"Point: {point}")
+                    
+
+                
+
+                
+            cv2.putText(image, str(datetime.now()),
+                        (185,12), 
+                        cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255,255,255), 1, cv2.LINE_AA)
+
+            cv2.putText(image, "Goal: "+str(randomGoal), 
+                        (10,52), 
+                        cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255,255,255), 1, cv2.LINE_AA)
+            
+            mp_drawing.draw_landmarks(image, results.pose_landmarks, mp_pose.POSE_CONNECTIONS,
+                                    mp_drawing.DrawingSpec(color=(245,117,66), thickness=2, circle_radius=2), 
+                                    mp_drawing.DrawingSpec(color=(245,66,230), thickness=2, circle_radius=2) 
+                                    )               
+            image = cv2.resize(image, (1000, 800))
+            cv2.imshow('Mediapipe Feed', image)
+
+            if cv2.waitKey(10) & 0xFF == ord('q'):
+                break
+
+        cap.release()
+        cv2.destroyAllWindows()
+
 
 def shoulder_press():
     print("shoulder_press fonksiyonu çağrıldı")
+
+    defaultExerciseTime = 2.6
+
+    randomGoal = generateRandomExerciseCount()
+    print(f"random goal: {randomGoal}")
+
+    startTime = datetime.now()
+    finishTime = datetime.now()
+    goalTime = float(randomGoal) * defaultExerciseTime
+    finishState = True
+
+    print(f"random goal: {randomGoal}")
+    print(f"goal time: {goalTime}")
+
+    point = 0
+
+    cap = cv2.VideoCapture(0)
+    counter = 0
+    stage = None
+
+    with mp_pose.Pose(min_detection_confidence=0.5, min_tracking_confidence=0.5) as pose:
+        while cap.isOpened():
+            ret, frame = cap.read()
+            
+            image = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+            image.flags.writeable = False
+        
+            results = pose.process(image)
+        
+            image.flags.writeable = True
+            image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
+            
+            try:
+                state = True
+                landmarks = results.pose_landmarks.landmark
+
+                if (landmarks[mp_pose.PoseLandmark.RIGHT_ELBOW.value].visibility < 0.5) and (landmarks[mp_pose.PoseLandmark.LEFT_ELBOW.value].visibility < 0.5):
+                    cv2.putText(image, 'DIRSEKLER ALGILANMADI', (190,42), 
+                        cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255,255,255), 1, cv2.LINE_AA)
+                    state = False
+                    
+                if state:
+
+                    if landmarks[mp_pose.PoseLandmark.RIGHT_ELBOW.value].visibility > landmarks[mp_pose.PoseLandmark.LEFT_ELBOW.value].visibility:
+                        elbow = [landmarks[mp_pose.PoseLandmark.RIGHT_ELBOW.value].x,landmarks[mp_pose.PoseLandmark.RIGHT_ELBOW.value].y]
+                        shoulder = [landmarks[mp_pose.PoseLandmark.RIGHT_SHOULDER.value].x,landmarks[mp_pose.PoseLandmark.RIGHT_SHOULDER.value].y]
+                        wrist = [landmarks[mp_pose.PoseLandmark.RIGHT_WRIST.value].x,landmarks[mp_pose.PoseLandmark.RIGHT_WRIST.value].y]
+                    else:
+                        elbow = [landmarks[mp_pose.PoseLandmark.LEFT_ELBOW.value].x,landmarks[mp_pose.PoseLandmark.LEFT_ELBOW.value].y]
+                        shoulder = [landmarks[mp_pose.PoseLandmark.LEFT_SHOULDER.value].x,landmarks[mp_pose.PoseLandmark.LEFT_SHOULDER.value].y]
+                        wrist = [landmarks[mp_pose.PoseLandmark.LEFT_WRIST.value].x,landmarks[mp_pose.PoseLandmark.LEFT_WRIST.value].y]
+
+                    
+
+                    angle = calculate_angle(shoulder, elbow, wrist)
+
+                    cv2.putText(image, str(angle).split('.')[0], 
+                                    tuple(np.multiply(elbow, [640, 480]).astype(int)), 
+                                    cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 255), 2, cv2.LINE_AA
+                                        )
+
+
+                    if angle > 130:
+                        stage = "up"
+                    if angle < 130 and stage == "up":
+                        counter +=1
+                        if counter==1:
+                            startTime = datetime.now()
+                            print(f"{startTime}")
+                        print(counter)
+                        stage = "down"
+            except:
+                pass
+
+            cv2.rectangle(image, (0,0), (180,80), (245,117,16), -1)
+            
+            cv2.putText(image, 'Shoulder Press', (10,12), 
+                        cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0,0,0), 1, cv2.LINE_AA)
+            cv2.putText(image, str(counter), 
+                        (10,30), 
+                        cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255,255,255), 1, cv2.LINE_AA)
+        
+            cv2.putText(image, stage, 
+                        (40,30), 
+                        cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255,255,255), 1, cv2.LINE_AA)
+            
+            if int(randomGoal) <= int(counter):
+                
+                cv2.putText(image, "Goal Completed. You can continue if you want",
+                        (185,42), 
+                        cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255,255,255), 1, cv2.LINE_AA)
+                
+            if finishState == False:
+                cv2.putText(image, f"Last Score: {point}/10",
+                        (490,12), 
+                        cv2.FONT_HERSHEY_SIMPLEX, 0.5, (245,117,16), 1, cv2.LINE_AA)
+
+            
+            if (int(randomGoal) == int(counter)) and finishState:
+                finishState = False
+                finishTime = datetime.now()
+                exerciseTime = finishTime - startTime
+                print(f"yapılan süre: {exerciseTime.total_seconds()}")
+
+                percent = round(((exerciseTime.total_seconds())*100) / (defaultExerciseTime * randomGoal))
+                
+                print(f"percent: {percent}")
+                if percent > 100:
+                    print("100 den büyük. yavaş yapıldı")
+
+                    percent = percent - 100
+                    pointLowerCount = percent // 10
+                    print(f"pointLowerCount: {pointLowerCount}")
+                    if pointLowerCount > 9:
+                        point = 1
+                    else:
+                        point = 10 - pointLowerCount
+
+                    print(f"Point: {point}")
+
+                else:
+                    print("100 den küçük. hızlı yapıldı")
+
+                    percent = 100 - percent
+                    pointLowerCount = percent // 10
+                    print(f"pointLowerCount: {pointLowerCount}")
+                    if pointLowerCount > 9:
+                        point = 1
+                    else:
+                        point = 10 - pointLowerCount
+
+                    print(f"Point: {point}")
+                    
+                
+            cv2.putText(image, str(datetime.now()),
+                        (185,12), 
+                        cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255,255,255), 1, cv2.LINE_AA)
+
+            cv2.putText(image, "Goal: "+str(randomGoal), 
+                        (10,52), 
+                        cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255,255,255), 1, cv2.LINE_AA)
+            
+            mp_drawing.draw_landmarks(image, results.pose_landmarks, mp_pose.POSE_CONNECTIONS,
+                                    mp_drawing.DrawingSpec(color=(245,117,66), thickness=2, circle_radius=2), 
+                                    mp_drawing.DrawingSpec(color=(245,66,230), thickness=2, circle_radius=2) 
+                                    )               
+            image = cv2.resize(image, (1000, 800))
+            cv2.imshow('Mediapipe Feed', image)
+
+            if cv2.waitKey(10) & 0xFF == ord('q'):
+                break
+
+        cap.release()
+        cv2.destroyAllWindows()
+
 
 def squat():
     print("squat fonksiyonu çağrıldı")
@@ -2334,6 +2734,8 @@ def squat():
 
     print(f"random goal: {randomGoal}")
     print(f"goal time: {goalTime}")
+
+    point = 0
 
 
     cap = cv2.VideoCapture(0)
@@ -2412,6 +2814,11 @@ def squat():
                         (185,42), 
                         cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255,255,255), 1, cv2.LINE_AA)
                 
+
+            if finishState == False:
+                cv2.putText(image, f"Last Score: {point}/10",
+                        (490,12), 
+                        cv2.FONT_HERSHEY_SIMPLEX, 0.5, (245,117,16), 1, cv2.LINE_AA)
                 
             
             if (int(randomGoal) == int(counter)) and finishState:
@@ -2478,8 +2885,649 @@ def squat():
 def t_bar_row():
     print("t_bar_row fonksiyonu çağrıldı")
 
+    defaultExerciseTime = 2.6
+
+    randomGoal = generateRandomExerciseCount()
+    print(f"random goal: {randomGoal}")
+
+    startTime = datetime.now()
+    finishTime = datetime.now()
+    goalTime = float(randomGoal) * defaultExerciseTime
+    finishState = True
+
+    print(f"random goal: {randomGoal}")
+    print(f"goal time: {goalTime}")
+
+    point = 0
+
+
+    cap = cv2.VideoCapture(0)
+    counter = 0
+    stage = None
+
+    with mp_pose.Pose(min_detection_confidence=0.5, min_tracking_confidence=0.5) as pose:
+        while cap.isOpened():
+            ret, frame = cap.read()
+            
+            image = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+            image.flags.writeable = False
+        
+            results = pose.process(image)
+        
+            image.flags.writeable = True
+            image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
+            
+            try:
+                state = True
+                landmarks = results.pose_landmarks.landmark
+
+                if (landmarks[mp_pose.PoseLandmark.RIGHT_ELBOW.value].visibility < 0.5) and (landmarks[mp_pose.PoseLandmark.LEFT_ELBOW.value].visibility < 0.5):
+                    cv2.putText(image, 'DIRSEKLER ALGILANMADI', (190,42), 
+                        cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255,255,255), 1, cv2.LINE_AA)
+                    state = False
+                    
+                if state:
+                    shoulder = [landmarks[mp_pose.PoseLandmark.RIGHT_SHOULDER.value].x,landmarks[mp_pose.PoseLandmark.RIGHT_SHOULDER.value].y]
+                    elbow = [landmarks[mp_pose.PoseLandmark.RIGHT_ELBOW.value].x,landmarks[mp_pose.PoseLandmark.RIGHT_ELBOW.value].y]
+                    wrist = [landmarks[mp_pose.PoseLandmark.RIGHT_WRIST.value].x,landmarks[mp_pose.PoseLandmark.RIGHT_WRIST.value].y]
+
+                    angle = calculate_angle(shoulder, elbow, wrist)
+
+                    cv2.putText(image, str(angle).split('.')[0], 
+                                    tuple(np.multiply(elbow, [640, 480]).astype(int)), 
+                                    cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 255), 2, cv2.LINE_AA
+                                        )
+
+
+                    if angle < 100:
+                        stage = "up"
+                    if angle > 100 and stage == "up":
+                        counter +=1
+                        if counter==1:
+                            startTime = datetime.now()
+                            print(f"{startTime}")
+                        print(counter)
+                        stage = "down"   
+
+
+            except:
+                pass
+
+            cv2.rectangle(image, (0,0), (180,80), (245,117,16), -1)
+            
+            cv2.putText(image, 'T Bar Row', (10,12), 
+                        cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0,0,0), 1, cv2.LINE_AA)
+            cv2.putText(image, str(counter), 
+                        (10,30), 
+                        cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255,255,255), 1, cv2.LINE_AA)
+        
+            cv2.putText(image, stage, 
+                        (40,30), 
+                        cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255,255,255), 1, cv2.LINE_AA)
+            
+            if int(randomGoal) <= int(counter):
+                
+                cv2.putText(image, "Goal Completed. You can continue if you want",
+                        (185,42), 
+                        cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255,255,255), 1, cv2.LINE_AA)
+                
+
+            if finishState == False:
+                cv2.putText(image, f"Last Score: {point}/10",
+                        (490,12), 
+                        cv2.FONT_HERSHEY_SIMPLEX, 0.5, (245,117,16), 1, cv2.LINE_AA)
+                
+            
+            if (int(randomGoal) == int(counter)) and finishState:
+                finishState = False
+                finishTime = datetime.now()
+                exerciseTime = finishTime - startTime
+                print(f"yapılan süre: {exerciseTime.total_seconds()}")
+
+                percent = round(((exerciseTime.total_seconds())*100) / (defaultExerciseTime * randomGoal))
+                
+                print(f"percent: {percent}")
+                if percent > 100:
+                    print("100 den büyük. yavaş yapıldı")
+
+                    percent = percent - 100
+                    pointLowerCount = percent // 10
+                    print(f"pointLowerCount: {pointLowerCount}")
+                    if pointLowerCount > 9:
+                        point = 1
+                    else:
+                        point = 10 - pointLowerCount
+
+                    print(f"Point: {point}")
+
+                else:
+                    print("100 den küçük. hızlı yapıldı")
+
+                    percent = 100 - percent
+                    pointLowerCount = percent // 10
+                    print(f"pointLowerCount: {pointLowerCount}")
+                    if pointLowerCount > 9:
+                        point = 1
+                    else:
+                        point = 10 - pointLowerCount
+
+                    print(f"Point: {point}")
+                    
+
+                
+
+                
+            cv2.putText(image, str(datetime.now()),
+                        (185,12), 
+                        cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255,255,255), 1, cv2.LINE_AA)
+
+            cv2.putText(image, "Goal: "+str(randomGoal), 
+                        (10,52), 
+                        cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255,255,255), 1, cv2.LINE_AA)
+            
+            mp_drawing.draw_landmarks(image, results.pose_landmarks, mp_pose.POSE_CONNECTIONS,
+                                    mp_drawing.DrawingSpec(color=(245,117,66), thickness=2, circle_radius=2), 
+                                    mp_drawing.DrawingSpec(color=(245,66,230), thickness=2, circle_radius=2) 
+                                    )               
+            image = cv2.resize(image, (1000, 800))
+            cv2.imshow('Mediapipe Feed', image)
+
+            if cv2.waitKey(10) & 0xFF == ord('q'):
+                break
+
+        cap.release()
+        cv2.destroyAllWindows()
+
+
 def tricep_dips():
     print("tricep_dips fonksiyonu çağrıldı")
 
+    defaultExerciseTime = 3.3
+
+    randomGoal = generateRandomExerciseCount()
+    print(f"random goal: {randomGoal}")
+
+    startTime = datetime.now()
+    finishTime = datetime.now()
+    goalTime = float(randomGoal) * defaultExerciseTime
+    finishState = True
+
+    print(f"random goal: {randomGoal}")
+    print(f"goal time: {goalTime}")
+
+    point = 0
+
+
+    cap = cv2.VideoCapture(0)
+    counter = 0
+    stage = None
+
+    with mp_pose.Pose(min_detection_confidence=0.5, min_tracking_confidence=0.5) as pose:
+        while cap.isOpened():
+            ret, frame = cap.read()
+            
+            image = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+            image.flags.writeable = False
+        
+            results = pose.process(image)
+        
+            image.flags.writeable = True
+            image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
+            
+            try:
+                state = True
+                landmarks = results.pose_landmarks.landmark
+
+                if (landmarks[mp_pose.PoseLandmark.RIGHT_ELBOW.value].visibility < 0.5) and (landmarks[mp_pose.PoseLandmark.LEFT_ELBOW.value].visibility < 0.5):
+                    cv2.putText(image, 'DIRSEKLER ALGILANMADI', (190,42), 
+                        cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255,255,255), 1, cv2.LINE_AA)
+                    state = False
+                    
+                if state:
+
+                    if landmarks[mp_pose.PoseLandmark.RIGHT_ELBOW.value].visibility > landmarks[mp_pose.PoseLandmark.LEFT_ELBOW.value].visibility:
+                        elbow = [landmarks[mp_pose.PoseLandmark.RIGHT_ELBOW.value].x,landmarks[mp_pose.PoseLandmark.RIGHT_ELBOW.value].y]
+                        shoulder = [landmarks[mp_pose.PoseLandmark.RIGHT_SHOULDER.value].x,landmarks[mp_pose.PoseLandmark.RIGHT_SHOULDER.value].y]
+                        wrist = [landmarks[mp_pose.PoseLandmark.RIGHT_WRIST.value].x,landmarks[mp_pose.PoseLandmark.RIGHT_WRIST.value].y]
+                    else:
+                        elbow = [landmarks[mp_pose.PoseLandmark.LEFT_ELBOW.value].x,landmarks[mp_pose.PoseLandmark.LEFT_ELBOW.value].y]
+                        shoulder = [landmarks[mp_pose.PoseLandmark.LEFT_SHOULDER.value].x,landmarks[mp_pose.PoseLandmark.LEFT_SHOULDER.value].y]
+                        wrist = [landmarks[mp_pose.PoseLandmark.LEFT_WRIST.value].x,landmarks[mp_pose.PoseLandmark.LEFT_WRIST.value].y]
+
+                    
+
+                    angle = calculate_angle(shoulder, elbow, wrist)
+
+                    cv2.putText(image, str(angle).split('.')[0], 
+                                    tuple(np.multiply(elbow, [640, 480]).astype(int)), 
+                                    cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 255), 2, cv2.LINE_AA
+                                        )
+
+
+                    if angle < 110:
+                        stage = "down"
+                    if angle > 120 and stage == "down":
+                        counter +=1
+                        if counter==1:
+                            startTime = datetime.now()
+                            print(f"{startTime}")
+                        print(counter)
+                        stage = "up"
+            except:
+                pass
+
+            cv2.rectangle(image, (0,0), (180,80), (245,117,16), -1)
+            
+            cv2.putText(image, 'Tricep Dips', (10,12), 
+                        cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0,0,0), 1, cv2.LINE_AA)
+            cv2.putText(image, str(counter), 
+                        (10,30), 
+                        cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255,255,255), 1, cv2.LINE_AA)
+        
+            cv2.putText(image, stage, 
+                        (40,30), 
+                        cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255,255,255), 1, cv2.LINE_AA)
+            
+            if int(randomGoal) <= int(counter):
+                
+                cv2.putText(image, "Goal Completed. You can continue if you want",
+                        (185,42), 
+                        cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255,255,255), 1, cv2.LINE_AA)
+                
+                
+            if finishState == False:
+                cv2.putText(image, f"Last Score: {point}/10",
+                        (490,12), 
+                        cv2.FONT_HERSHEY_SIMPLEX, 0.5, (245,117,16), 1, cv2.LINE_AA)
+
+            
+            if (int(randomGoal) == int(counter)) and finishState:
+                finishState = False
+                finishTime = datetime.now()
+                exerciseTime = finishTime - startTime
+                print(f"yapılan süre: {exerciseTime.total_seconds()}")
+
+                percent = round(((exerciseTime.total_seconds())*100) / (defaultExerciseTime * randomGoal))
+                
+                print(f"percent: {percent}")
+                if percent > 100:
+                    print("100 den büyük. yavaş yapıldı")
+
+                    percent = percent - 100
+                    pointLowerCount = percent // 10
+                    print(f"pointLowerCount: {pointLowerCount}")
+                    if pointLowerCount > 9:
+                        point = 1
+                    else:
+                        point = 10 - pointLowerCount
+
+                    print(f"Point: {point}")
+
+                else:
+                    print("100 den küçük. hızlı yapıldı")
+
+                    percent = 100 - percent
+                    pointLowerCount = percent // 10
+                    print(f"pointLowerCount: {pointLowerCount}")
+                    if pointLowerCount > 9:
+                        point = 1
+                    else:
+                        point = 10 - pointLowerCount
+
+                    print(f"Point: {point}")
+                    
+
+                
+
+                
+            cv2.putText(image, str(datetime.now()),
+                        (185,12), 
+                        cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255,255,255), 1, cv2.LINE_AA)
+
+            cv2.putText(image, "Goal: "+str(randomGoal), 
+                        (10,52), 
+                        cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255,255,255), 1, cv2.LINE_AA)
+            
+            mp_drawing.draw_landmarks(image, results.pose_landmarks, mp_pose.POSE_CONNECTIONS,
+                                    mp_drawing.DrawingSpec(color=(245,117,66), thickness=2, circle_radius=2), 
+                                    mp_drawing.DrawingSpec(color=(245,66,230), thickness=2, circle_radius=2) 
+                                    )               
+            image = cv2.resize(image, (1000, 800))
+            cv2.imshow('Mediapipe Feed', image)
+
+            if cv2.waitKey(10) & 0xFF == ord('q'):
+                break
+
+        cap.release()
+        cv2.destroyAllWindows()
+
+
 def tricep_pushdown():
     print("tricep_pushdown fonksiyonu çağrıldı")
+
+    defaultExerciseTime = 3.0
+
+    randomGoal = generateRandomExerciseCount()
+    print(f"random goal: {randomGoal}")
+
+    startTime = datetime.now()
+    finishTime = datetime.now()
+    goalTime = float(randomGoal) * defaultExerciseTime
+    finishState = True
+
+    print(f"random goal: {randomGoal}")
+    print(f"goal time: {goalTime}")
+
+    point = 0
+
+
+    cap = cv2.VideoCapture(0)
+    counter = 0
+    stage = None
+
+    with mp_pose.Pose(min_detection_confidence=0.5, min_tracking_confidence=0.5) as pose:
+        while cap.isOpened():
+            ret, frame = cap.read()
+            
+            image = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+            image.flags.writeable = False
+        
+            results = pose.process(image)
+        
+            image.flags.writeable = True
+            image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
+            
+            try:
+                state = True
+                landmarks = results.pose_landmarks.landmark
+
+                if (landmarks[mp_pose.PoseLandmark.RIGHT_ELBOW.value].visibility < 0.5) and (landmarks[mp_pose.PoseLandmark.LEFT_ELBOW.value].visibility < 0.5):
+                    cv2.putText(image, 'DIRSEKLER ALGILANMADI', (190,42), 
+                        cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255,255,255), 1, cv2.LINE_AA)
+                    state = False
+                    
+                if state:
+
+                    if landmarks[mp_pose.PoseLandmark.RIGHT_ELBOW.value].visibility > landmarks[mp_pose.PoseLandmark.LEFT_ELBOW.value].visibility:
+                        elbow = [landmarks[mp_pose.PoseLandmark.RIGHT_ELBOW.value].x,landmarks[mp_pose.PoseLandmark.RIGHT_ELBOW.value].y]
+                        shoulder = [landmarks[mp_pose.PoseLandmark.RIGHT_SHOULDER.value].x,landmarks[mp_pose.PoseLandmark.RIGHT_SHOULDER.value].y]
+                        wrist = [landmarks[mp_pose.PoseLandmark.RIGHT_WRIST.value].x,landmarks[mp_pose.PoseLandmark.RIGHT_WRIST.value].y]
+                    else:
+                        elbow = [landmarks[mp_pose.PoseLandmark.LEFT_ELBOW.value].x,landmarks[mp_pose.PoseLandmark.LEFT_ELBOW.value].y]
+                        shoulder = [landmarks[mp_pose.PoseLandmark.LEFT_SHOULDER.value].x,landmarks[mp_pose.PoseLandmark.LEFT_SHOULDER.value].y]
+                        wrist = [landmarks[mp_pose.PoseLandmark.LEFT_WRIST.value].x,landmarks[mp_pose.PoseLandmark.LEFT_WRIST.value].y]
+
+                    
+
+                    angle = calculate_angle(shoulder, elbow, wrist)
+
+                    cv2.putText(image, str(angle).split('.')[0], 
+                                    tuple(np.multiply(elbow, [640, 480]).astype(int)), 
+                                    cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 255), 2, cv2.LINE_AA
+                                        )
+
+
+                    if angle > 130:
+                        stage = "down"
+                    if angle < 130 and stage == "down":
+                        counter +=1
+                        if counter==1:
+                            startTime = datetime.now()
+                            print(f"{startTime}")
+                        print(counter)
+                        stage = "up"
+            except:
+                pass
+
+            cv2.rectangle(image, (0,0), (180,80), (245,117,16), -1)
+            
+            cv2.putText(image, 'Tricep Pushdown', (10,12), 
+                        cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0,0,0), 1, cv2.LINE_AA)
+            cv2.putText(image, str(counter), 
+                        (10,30), 
+                        cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255,255,255), 1, cv2.LINE_AA)
+        
+            cv2.putText(image, stage, 
+                        (40,30), 
+                        cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255,255,255), 1, cv2.LINE_AA)
+            
+            if int(randomGoal) <= int(counter):
+                
+                cv2.putText(image, "Goal Completed. You can continue if you want",
+                        (185,42), 
+                        cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255,255,255), 1, cv2.LINE_AA)
+                
+
+            if finishState == False:
+                cv2.putText(image, f"Last Score: {point}/10",
+                        (490,12), 
+                        cv2.FONT_HERSHEY_SIMPLEX, 0.5, (245,117,16), 1, cv2.LINE_AA)
+                
+            
+            if (int(randomGoal) == int(counter)) and finishState:
+                finishState = False
+                finishTime = datetime.now()
+                exerciseTime = finishTime - startTime
+                print(f"yapılan süre: {exerciseTime.total_seconds()}")
+
+                percent = round(((exerciseTime.total_seconds())*100) / (defaultExerciseTime * randomGoal))
+                
+                print(f"percent: {percent}")
+                if percent > 100:
+                    print("100 den büyük. yavaş yapıldı")
+
+                    percent = percent - 100
+                    pointLowerCount = percent // 10
+                    print(f"pointLowerCount: {pointLowerCount}")
+                    if pointLowerCount > 9:
+                        point = 1
+                    else:
+                        point = 10 - pointLowerCount
+
+                    print(f"Point: {point}")
+
+                else:
+                    print("100 den küçük. hızlı yapıldı")
+
+                    percent = 100 - percent
+                    pointLowerCount = percent // 10
+                    print(f"pointLowerCount: {pointLowerCount}")
+                    if pointLowerCount > 9:
+                        point = 1
+                    else:
+                        point = 10 - pointLowerCount
+
+                    print(f"Point: {point}")
+                    
+                
+            cv2.putText(image, str(datetime.now()),
+                        (185,12), 
+                        cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255,255,255), 1, cv2.LINE_AA)
+
+            cv2.putText(image, "Goal: "+str(randomGoal), 
+                        (10,52), 
+                        cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255,255,255), 1, cv2.LINE_AA)
+            
+            mp_drawing.draw_landmarks(image, results.pose_landmarks, mp_pose.POSE_CONNECTIONS,
+                                    mp_drawing.DrawingSpec(color=(245,117,66), thickness=2, circle_radius=2), 
+                                    mp_drawing.DrawingSpec(color=(245,66,230), thickness=2, circle_radius=2) 
+                                    )               
+            image = cv2.resize(image, (1000, 800))
+            cv2.imshow('Mediapipe Feed', image)
+
+            if cv2.waitKey(10) & 0xFF == ord('q'):
+                break
+
+        cap.release()
+        cv2.destroyAllWindows()
+
+def high_knees():
+    randomGoal = generateRandomExerciseCount()
+    print(f"random goal: {randomGoal}")
+
+    defaultExerciseTime = 0.5
+
+    startTime = datetime.now()
+    finishTime = datetime.now()
+    goalTime = float(randomGoal) * defaultExerciseTime
+    finishState = True
+
+    print(f"random goal: {randomGoal}")
+    print(f"goal time: {goalTime}")
+
+    point = 0
+
+    cap = cv2.VideoCapture(0)
+    counter = 0
+    stage = None
+
+    with mp_pose.Pose(min_detection_confidence=0.5, min_tracking_confidence=0.5) as pose:
+        while cap.isOpened():
+            ret, frame = cap.read()
+            
+            image = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+            image.flags.writeable = False
+        
+            results = pose.process(image)
+        
+            image.flags.writeable = True
+            image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
+            
+            try:
+                state = True
+                landmarks = results.pose_landmarks.landmark
+
+
+                if (landmarks[mp_pose.PoseLandmark.RIGHT_KNEE.value].visibility < 0.5) and (landmarks[mp_pose.PoseLandmark.LEFT_KNEE.value].visibility < 0.5):
+                    cv2.putText(image, 'DIZLER ALGILANMADI', (190,27), 
+                        cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255,255,255), 1, cv2.LINE_AA)
+                    state = False
+
+
+                if state:
+                    
+                    hip = [landmarks[mp_pose.PoseLandmark.LEFT_HIP.value].x,landmarks[mp_pose.PoseLandmark.LEFT_HIP.value].y]
+                    knee = [landmarks[mp_pose.PoseLandmark.LEFT_KNEE.value].x,landmarks[mp_pose.PoseLandmark.LEFT_KNEE.value].y]
+                    ankle = [landmarks[mp_pose.PoseLandmark.LEFT_ANKLE.value].x,landmarks[mp_pose.PoseLandmark.LEFT_ANKLE.value].y]
+                    
+                    shoulder = [landmarks[mp_pose.PoseLandmark.LEFT_SHOULDER.value].x,landmarks[mp_pose.PoseLandmark.LEFT_SHOULDER.value].y]
+                    hip = [landmarks[mp_pose.PoseLandmark.LEFT_HIP.value].x,landmarks[mp_pose.PoseLandmark.LEFT_HIP.value].y]
+                    knee = [landmarks[mp_pose.PoseLandmark.LEFT_KNEE.value].x,landmarks[mp_pose.PoseLandmark.LEFT_KNEE.value].y]
+                    
+
+                    angle = calculate_angle(shoulder, hip, knee)
+
+                    bacak_angle = calculate_angle(hip, knee, ankle)
+
+                    cv2.putText(image, str(angle).split('.')[0], 
+                                    tuple(np.multiply(hip, [640, 480]).astype(int)), 
+                                    cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 47, 47), 2, cv2.LINE_AA
+                                        )
+                    
+                    cv2.putText(image, str(bacak_angle).split('.')[0], 
+                                    tuple(np.multiply(knee, [640, 480]).astype(int)), 
+                                    cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 47, 47), 2, cv2.LINE_AA
+                                        )
+                    
+
+
+                    if bacak_angle > 130:
+                        stage = "up"
+                    if bacak_angle < 100 and stage == "up":
+                        counter +=1
+                        if counter==1:
+                            startTime = datetime.now()
+                            print(f"{startTime}")
+                        print(counter)
+                        stage = "down"   
+
+                    
+            except:
+                pass
+
+            cv2.rectangle(image, (0,0), (180,80), (245,117,16), -1)
+            
+            cv2.putText(image, 'High Knees', (10,12), 
+                        cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0,0,0), 1, cv2.LINE_AA)
+            cv2.putText(image, str(counter), 
+                        (10,30), 
+                        cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255,255,255), 1, cv2.LINE_AA)
+        
+            cv2.putText(image, stage, 
+                        (40,30), 
+                        cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255,255,255), 1, cv2.LINE_AA)
+            
+            if int(randomGoal) <= int(counter):
+                
+                cv2.putText(image, "Goal Completed. You can continue if you want",
+                        (185,42), 
+                        cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255,255,255), 1, cv2.LINE_AA)
+                
+
+            if finishState == False:
+                cv2.putText(image, f"Last Score: {point}/10",
+                        (490,12), 
+                        cv2.FONT_HERSHEY_SIMPLEX, 0.5, (245,117,16), 1, cv2.LINE_AA)
+                
+            
+            if (int(randomGoal) == int(counter)) and finishState:
+                finishState = False
+                finishTime = datetime.now()
+                exerciseTime = finishTime - startTime
+                print(f"yapılan süre: {exerciseTime.total_seconds()}")
+
+                percent = round(((exerciseTime.total_seconds())*100) / (defaultExerciseTime * randomGoal))
+                
+                print(f"percent: {percent}")
+                if percent > 100:
+                    print("100 den büyük. yavaş yapıldı")
+
+                    percent = percent - 100
+                    pointLowerCount = percent // 10
+                    print(f"pointLowerCount: {pointLowerCount}")
+                    if pointLowerCount > 9:
+                        point = 1
+                    else:
+                        point = 10 - pointLowerCount
+
+                    print(f"Point: {point}")
+
+                else:
+                    print("100 den küçük. hızlı yapıldı")
+
+                    percent = 100 - percent
+                    pointLowerCount = percent // 10
+                    print(f"pointLowerCount: {pointLowerCount}")
+                    if pointLowerCount > 9:
+                        point = 1
+                    else:
+                        point = 10 - pointLowerCount
+
+                    print(f"Point: {point}")
+                    
+
+                
+
+                
+            cv2.putText(image, str(datetime.now()),
+                        (185,12), 
+                        cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255,255,255), 1, cv2.LINE_AA)
+
+            cv2.putText(image, "Goal: "+str(randomGoal), 
+                        (10,52), 
+                        cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255,255,255), 1, cv2.LINE_AA)
+            
+            
+            
+            mp_drawing.draw_landmarks(image, results.pose_landmarks, mp_pose.POSE_CONNECTIONS,
+                                    mp_drawing.DrawingSpec(color=(245,117,66), thickness=2, circle_radius=2), 
+                                    mp_drawing.DrawingSpec(color=(245,66,230), thickness=2, circle_radius=2) 
+                                    )               
+            image = cv2.resize(image, (1000, 800))
+            cv2.imshow('Mediapipe Feed', image)
+
+            if cv2.waitKey(10) & 0xFF == ord('q'):
+                break
+
+        cap.release()
+        cv2.destroyAllWindows()

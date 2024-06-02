@@ -23,6 +23,9 @@ import numpy as np
 import mediapipe as mp
 import asyncio
 from PIL import Image,ImageTk
+from itertools import count
+
+framess = []
 
 gif_path = ""
 classes = {
@@ -48,12 +51,52 @@ classes = {
     19: "t_bar_row",
     20: "tricep_dips",
     21: "tricep_pushdown",
+    22: "high_knees",
 }
 
 
+
 model = load_model('workout_model_.h5')
-framess = []
-gif_frames = []
+
+class ImageLabel(tk.Label):
+    def load(self, im):
+        if isinstance(im, str):
+            im = Image.open(im)
+        self.loc = 0
+        self.frames = []
+
+        try:
+            for i in count(1):
+                self.frames.append(ImageTk.PhotoImage(im.copy()))
+                im.seek(i)
+        except EOFError:
+            pass
+
+        try:
+            self.delay = im.info['duration']
+        except:
+            self.delay = 100
+
+        if len(self.frames) == 1:
+            self.config(image=self.frames[0])
+        else:
+            self.next_frame()
+
+    def unload(self):
+        self.config(image="")
+        self.frames = None
+
+    def next_frame(self):
+        if self.frames:
+            self.loc += 1
+            self.loc %= len(self.frames)
+            self.config(image=self.frames[self.loc])
+            self.after_id = self.after(self.delay, self.next_frame)
+
+    def stop_animation(self):
+        if hasattr(self, 'after_id'):
+            self.after_cancel(self.after_id)
+            del self.after_id
 
 def predict():
     global gif_label
@@ -118,6 +161,9 @@ def choose_exercises_with_camera():
                         en_fazla_sayi = liste.count(en_fazla_eleman)
                         print(classes[en_fazla_eleman])
 
+                        if int(en_fazla_eleman) == 16 or int(en_fazla_eleman) == 2:
+                            en_fazla_eleman = en_fazla_eleman + 1
+
                         fonksiyon = classes[en_fazla_eleman]
                         fonksiyon = getattr(exercises_function,fonksiyon)
                         cap.release()
@@ -149,14 +195,6 @@ def choose_exercises_with_camera():
     framess = []
 
 
-def choosen_gif(event):
-    global gif_path
-    global gif_frames
-    gif_path = "gifs/" + combo_box.get() + ".gif"
-    print(gif_path)
-    gif_frames = []
-    play_gif()
-
 root = tk.Tk()
 root.title("Egzersiz Tahmini")
 root.geometry("600x450")
@@ -165,6 +203,13 @@ root.lift()
 camera_button = tk.Button(root, text="Choose Exercises with Camera", command=choose_exercises_with_camera)
 camera_button.pack(pady=10)
 
+def choosen_gif(event):
+    gif_path = "gifs/" + combo_box.get() + ".gif"
+    print(gif_path)
+    gif_label.stop_animation()
+    gif_label.load(gif_path)
+    #play_gif()
+
 combo_box = ttk.Combobox(root, state = "readonly", values=[i for i in classes.values()])
 combo_box.pack(pady=10)
 combo_box.bind("<<ComboboxSelected>>", choosen_gif)
@@ -172,45 +217,10 @@ combo_box.bind("<<ComboboxSelected>>", choosen_gif)
 predict_button = tk.Button(root, text="Select Exercise", command=predict)
 predict_button.pack(pady=10)
 
-gif_label = tk.Label(root)
+gif_label = ImageLabel(root)
 gif_label.pack()
-
-def play_gif():
-    global gif_path
-    global gif_label
-    global gif_frames
-    print(type(gif_path))
-
-    if gif_path != "":
-        gif = Image.open(gif_path)
-        gif_frames = []
-
-        try:
-            while True:
-                #print(len(gif_frames))
-                frame = ImageTk.PhotoImage(gif.copy())
-                gif_frames.append(frame)
-                gif.seek(len(gif_frames))
-        except EOFError:
-            pass
-
-        def update_frame(frame_num):
-            #print(len(gif_frames))
-            frame = gif_frames[frame_num]
-            gif_label.configure(image=frame)
-            gif_label.image = frame
-            if frame_num == len(gif_frames) -1:
-                frame_num = 0 
-            else: 
-                frame_num = frame_num + 1
-            root.after(35, update_frame, frame_num)
-
-        update_frame(0)
-
 
 for a in classes.values():
     print(str(a))
-
-
 
 root.mainloop()
