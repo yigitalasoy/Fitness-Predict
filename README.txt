@@ -1,3 +1,7 @@
+https://1drv.ms/u/c/c531e5395517caa8/EdtCa19j61ZAnrhhu4vBWlYBqTmLYuCczYNwnUniqb-DNQ?e=fHq8zD
+
+Linkdeki keras modeli indirilip "Exercise Predict" klasörünün içine atılmalıdır.
+
 1-Sanal ortamı oluşturma
     python -m venv myenv
 
